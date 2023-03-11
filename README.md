@@ -195,7 +195,9 @@ These scripts do have support for building with mpv's deprecated waf build. It i
 not used by default. To invoke it, you must pass an additional environment variable,
 BUILDSYSTEM=waf to your commands. For example::
 
-    BUILDSYSTEM=waf ./rebuild -j4
+```bash
+BUILDSYSTEM=waf ./rebuild -j4
+```
 
 The arguments that you pass should conform to waf conventions and not the meson
 ones.
@@ -234,11 +236,11 @@ if the dependencies are not available.)
 You can put additional ffmpeg configure flags into ffmpeg_options. For
 example, to enable some dependencies needed for encoding::
 
-    printf "%s\n" --enable-libx264    >> ffmpeg_options
-    
-    printf "%s\n" --enable-libmp3lame >> ffmpeg_options
-    
-    printf "%s\n" --enable-libfdk-aac >> ffmpeg_options
+```bash
+printf "%s\n" --enable-libx264    >> ffmpeg_options
+printf "%s\n" --enable-libmp3lame >> ffmpeg_options
+printf "%s\n" --enable-libfdk-aac >> ffmpeg_options
+```
 
 Do this in the mpv-build top-level directory (the same that contains
 the build scripts and this readme file). It must be done prior running
@@ -262,11 +264,15 @@ contain newline[s].
 
 Except empty/with-newlines, any list of configure arguments, for instance::
 
-    ./configure   --thing=foo --libs="-L/bar -lbaz" -x abc +z
+```bash
+./configure   --thing=foo --libs="-L/bar -lbaz" -x abc +z
+```
 
 can also be added to the file, like so::
 
-    printf "%s\n" --thing=foo --libs="-L/bar -lbaz" -x abc +z >> ffmpeg_options
+```bash
+printf "%s\n" --thing=foo --libs="-L/bar -lbaz" -x abc +z >> ffmpeg_options
+```
 
 Instructions for Debian / Ubuntu package
 ========================================
@@ -283,22 +289,30 @@ regularly tested on Debian Sid.
 
 Install some basic packaging tools with the command::
 
-    apt-get install devscripts equivs
+```bash
+apt-get install devscripts equivs
+```
 
 In the mpv-build root directory, create and install a dummy build dependency
 package::
 
-    mk-build-deps -s sudo -i
+```bash
+mk-build-deps -s sudo -i
+```
 
 You can now build the mpv Debian package with the following command::
 
-    dpkg-buildpackage -uc -us -b -j4
+```bash
+dpkg-buildpackage -uc -us -b -j4
+```
 
 Adjust the "4" to your number of available processors as appropriate. On
 completion, the file mpv_<version>_<architecture>.deb will be created in the
 parent directory. Install it with::
 
-    sudo dpkg -i ../mpv_<version>_<architecture>.deb
+```bash
+sudo dpkg -i ../mpv_<version>_<architecture>.deb
+```
 
 where you must replace <version> with the version of mpv you just built (as
 indicated in debian/changelog) and <architecture> with your architecture.
@@ -331,15 +345,21 @@ backport bug fixes (which they usually fail to do).
 The following command can be used to delete all local changes, and to checkout
 the latest release version of mpv::
 
-    ./use-mpv-release
+```bash
+./use-mpv-release
+```
 
 And run ``./rebuild`` or similar. Use this to switch back to git master::
 
-    ./use-mpv-master
+```bash
+./use-mpv-master
+```
 
 Or this to switch to a custom tag/branch/commit FOO::
 
-    ./use-mpv-custom FOO
+```bash
+./use-mpv-custom FOO
+```
 
 Likewise, you can use ``./use-ffmpeg-master``, ``./use-ffmpeg-release`` or
 ``./use-ffmpeg-custom BAR`` to switch between git master, the latest FFmpeg
@@ -362,7 +382,9 @@ Building libmpv
 
 You can enable building libmpv by enabling the configure option::
 
-    printf "%s\n" -Dlibmpv=true > mpv_options
+```bash
+printf "%s\n" -Dlibmpv=true > mpv_options
+```
 
 Note that this will make the mpv-build scripts also enable PIC for all used
 libraries. For this reason, be sure to run ``./clean`` before rebuilding.
