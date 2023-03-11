@@ -22,6 +22,8 @@ cd mpv-build
 Install 3rd-part libraries
 
 ```bash
+sudo pip install --upgrade meson
+
 git clone --recursive https://github.com/SNSerHello/openh264.git
 cd openh264
 make OS=linux ARCH=x86_64
@@ -92,7 +94,6 @@ Generate `ffmpeg_options`
 printf "%s\n" --extra-version=0ubuntu0.1 > ffmpeg_options
 printf "%s\n" --toolchain=hardened >> ffmpeg_options
 printf "%s\n" --arch=amd64 >> ffmpeg_options
-printf "%s\n" --enable-gpl >> ffmpeg_options
 printf "%s\n" --disable-stripping >> ffmpeg_options
 printf "%s\n" --disable-filter=resample >> ffmpeg_options
 printf "%s\n" --enable-gnutls >> ffmpeg_options
@@ -146,7 +147,6 @@ printf "%s\n" --enable-nvenc >> ffmpeg_options
 printf "%s\n" --enable-chromaprint >> ffmpeg_options
 printf "%s\n" --enable-frei0r >> ffmpeg_options
 printf "%s\n" --enable-libx264 >> ffmpeg_options
-printf "%s\n" --enable-shared >> ffmpeg_options
 printf "%s\n" --enable-libopenh264 >> ffmpeg_options
 ```
 
@@ -303,6 +303,29 @@ mk-build-deps -s sudo -i
 You can now build the mpv Debian package with the following command::
 
 ```bash
+sudo apt install \
+  dh-autoreconf \
+  libdav1d-dev \
+  glslang-dev \
+  libarchive-dev \
+  libdav1d-dev \
+  libdvdnav-dev \
+  libepoxy-dev \
+  libgbm-dev \
+  libjpeg-dev \
+  libbrotli-dev \
+  liblcms2-dev \
+  liblircclient-dev \
+  libmodplug-dev \
+  libopencore-amrnb-dev \
+  libopencore-amrwb-dev \
+  librtmp-dev \
+  libuchardet-dev \
+  libv4l-dev \
+  libvdpau-dev \
+  libvo-amrwbenc-dev \
+  python3-docutils
+
 dpkg-buildpackage -uc -us -b -j4
 ```
 
