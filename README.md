@@ -19,7 +19,7 @@ git clone https://github.com/mpv-player/mpv-build.git
 cd mpv-build
 ```
 
-install 3rd-part libraries
+Install 3rd-part libraries
 
 ```bash
 git clone --recursive https://github.com/SNSerHello/openh264.git
@@ -86,7 +86,7 @@ sudo apt install \
   liblua5.1-0-dev
 ```
 
-make `ffmpeg_options`
+Generate `ffmpeg_options`
 
 ```bash
 printf "%s\n" --extra-version=0ubuntu0.1 > ffmpeg_options
@@ -150,7 +150,7 @@ printf "%s\n" --enable-shared >> ffmpeg_options
 printf "%s\n" --enable-libopenh264 >> ffmpeg_options
 ```
 
-make `mpv_options`
+Generate `mpv_options`
 
 ```bash
 printf "%s\n" -Dsdl2=enabled > mpv_options
