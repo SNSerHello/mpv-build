@@ -305,7 +305,6 @@ You can now build the mpv Debian package with the following command::
 ```bash
 sudo apt install \
   dh-autoreconf \
-  libdav1d-dev \
   glslang-dev \
   libarchive-dev \
   libdav1d-dev \
