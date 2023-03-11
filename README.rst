@@ -13,13 +13,156 @@ the next section are installed.
 
 Checkout the build repo::
 
-    git clone https://github.com/mpv-player/mpv-build.git
+```bash
+git clone https://github.com/mpv-player/mpv-build.git
 
-    cd mpv-build
+cd mpv-build
+```
+
+install 3rd-part libraries
+
+```bash
+git clone --recursive https://github.com/SNSerHello/openh264.git
+cd openh264
+make OS=linux ARCH=x86_64
+sudo make install
+
+git clone --recursive https://github.com/SNSerHello/nv-codec-headers.git
+cd nv-codec-headers
+sudo make install
+
+sudo apt install \
+  nasm \
+  yasm \
+  libchromaprint-dev \
+  libaom-dev \
+  libfrei0r-ocaml-dev \
+  libgnutls28-dev \
+  libladspa-ocaml-dev \
+  liblilv-dev \
+  libass-dev \
+  libbluray-dev \
+  libbs2b-dev \
+  libcaca-dev \
+  libcodec2-dev \
+  libdc1394-22-dev \
+  libdrm-dev \
+  libgme-dev \
+  libgsm1-dev \
+  libmysofa-dev \
+  libopenjp2-7-dev \
+  libopenmpt-dev \
+  libopus-dev \
+  libpulse-dev \
+  librsvg2-dev \
+  librubberband-dev \
+  libshine-dev \
+  libsnappy-dev \
+  libsoxr-dev \
+  libssh-dev \
+  libspeex-dev \
+  libtheora-dev \
+  libtwolame-dev \
+  libvidstab-dev \
+  libvpx-dev \
+  libwebp-dev \
+  libx264-dev \
+  libx265-dev \
+  libxvidcore-dev \
+  libzmq3-dev \
+  libzvbi-dev \
+  libopenal-dev \
+  libomxil-bellagio-dev \
+  libjack-dev \
+  libcdio-dev \
+  libcdio-cdda-dev \
+  libcdio-paranoia-dev \
+  libffmpeg-nvenc-dev \
+  libsdl2-dev \
+  libbiococoa-dev \
+  libsdl2-dev \
+  libxpresent-dev \
+  lua5.1 \
+  liblua5.1-0-dev
+```
+
+make `ffmpeg_options`
+
+```bash
+printf "%s\n" --extra-version=0ubuntu0.1 > ffmpeg_options
+printf "%s\n" --toolchain=hardened >> ffmpeg_options
+printf "%s\n" --arch=amd64 >> ffmpeg_options
+printf "%s\n" --enable-gpl >> ffmpeg_options
+printf "%s\n" --disable-stripping >> ffmpeg_options
+printf "%s\n" --disable-filter=resample >> ffmpeg_options
+printf "%s\n" --enable-gnutls >> ffmpeg_options
+printf "%s\n" --enable-ladspa >> ffmpeg_options
+printf "%s\n" --enable-libaom >> ffmpeg_options
+printf "%s\n" --enable-libass >> ffmpeg_options
+printf "%s\n" --enable-libbluray >> ffmpeg_options
+printf "%s\n" --enable-libbs2b >> ffmpeg_options
+printf "%s\n" --enable-libcaca >> ffmpeg_options
+printf "%s\n" --enable-libcdio >> ffmpeg_options
+printf "%s\n" --enable-libcodec2 >> ffmpeg_options
+printf "%s\n" --enable-libfontconfig >> ffmpeg_options
+printf "%s\n" --enable-libfreetype >> ffmpeg_options
+printf "%s\n" --enable-libfribidi >> ffmpeg_options
+printf "%s\n" --enable-libgme >> ffmpeg_options
+printf "%s\n" --enable-libgsm >> ffmpeg_options
+printf "%s\n" --enable-libjack >> ffmpeg_options
+printf "%s\n" --enable-libmp3lame >> ffmpeg_options
+printf "%s\n" --enable-libmysofa >> ffmpeg_options
+printf "%s\n" --enable-libopenjpeg >> ffmpeg_options
+printf "%s\n" --enable-libopenmpt >> ffmpeg_options
+printf "%s\n" --enable-libopus >> ffmpeg_options
+printf "%s\n" --enable-libpulse >> ffmpeg_options
+printf "%s\n" --enable-librsvg >> ffmpeg_options
+printf "%s\n" --enable-librubberband >> ffmpeg_options
+printf "%s\n" --enable-libshine >> ffmpeg_options
+printf "%s\n" --enable-libsnappy >> ffmpeg_options
+printf "%s\n" --enable-libsoxr >> ffmpeg_options
+printf "%s\n" --enable-libspeex >> ffmpeg_options
+printf "%s\n" --enable-libssh >> ffmpeg_options
+printf "%s\n" --enable-libtheora >> ffmpeg_options
+printf "%s\n" --enable-libtwolame >> ffmpeg_options
+printf "%s\n" --enable-libvidstab >> ffmpeg_options
+printf "%s\n" --enable-libvorbis >> ffmpeg_options
+printf "%s\n" --enable-libvpx >> ffmpeg_options
+printf "%s\n" --enable-libwebp >> ffmpeg_options
+printf "%s\n" --enable-libx265 >> ffmpeg_options
+printf "%s\n" --enable-libxml2 >> ffmpeg_options
+printf "%s\n" --enable-libxvid >> ffmpeg_options
+printf "%s\n" --enable-libzmq >> ffmpeg_options
+printf "%s\n" --enable-libzvbi >> ffmpeg_options
+printf "%s\n" --enable-lv2 >> ffmpeg_options
+printf "%s\n" --enable-omx >> ffmpeg_options
+printf "%s\n" --enable-openal >> ffmpeg_options
+printf "%s\n" --enable-opencl >> ffmpeg_options
+printf "%s\n" --enable-opengl >> ffmpeg_options
+printf "%s\n" --enable-sdl2 >> ffmpeg_options
+printf "%s\n" --enable-libdc1394 >> ffmpeg_options
+printf "%s\n" --enable-libdrm >> ffmpeg_options
+printf "%s\n" --enable-nvenc >> ffmpeg_options
+printf "%s\n" --enable-chromaprint >> ffmpeg_options
+printf "%s\n" --enable-frei0r >> ffmpeg_options
+printf "%s\n" --enable-libx264 >> ffmpeg_options
+printf "%s\n" --enable-shared >> ffmpeg_options
+printf "%s\n" --enable-libopenh264 >> ffmpeg_options
+```
+
+make `mpv_options`
+
+```bash
+printf "%s\n" -Dsdl2=enabled > mpv_options
+printf "%s\n" -Dx11=enabled >> mpv_options
+printf "%s\n" -Dlibmpv=true >> mpv_options
+```
 
 To get the ffmpeg, libass and mpv sources and build them, run the command::
 
-    ./rebuild -j4
+```bash
+./rebuild -j4
+```
 
 The ``-j4`` asks it to use 4 parallel processes.
 
@@ -31,7 +174,9 @@ the FFmpeg build system can sometimes be a bit glitchy.
 
 Install mpv with::
 
-    sudo ./install
+```bash
+sudo ./install
+```
 
 mpv doesn't need to be installed. The binary ./mpv/build/mpv can be used as-is.
 You can copy it to /usr/local/bin manually. Note that libass and ffmpeg will be
@@ -90,9 +235,9 @@ You can put additional ffmpeg configure flags into ffmpeg_options. For
 example, to enable some dependencies needed for encoding::
 
     printf "%s\n" --enable-libx264    >> ffmpeg_options
-
+    
     printf "%s\n" --enable-libmp3lame >> ffmpeg_options
-
+    
     printf "%s\n" --enable-libfdk-aac >> ffmpeg_options
 
 Do this in the mpv-build top-level directory (the same that contains
