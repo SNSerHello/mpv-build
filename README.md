@@ -14,8 +14,7 @@ the next section are installed.
 Checkout the build repo::
 
 ```bash
-git clone https://github.com/mpv-player/mpv-build.git
-
+git clone --recursive https://github.com/mpv-player/mpv-build.git
 cd mpv-build
 ```
 
