@@ -34,6 +34,7 @@ cd nv-codec-headers
 sudo make install
 
 sudo apt install \
+  ninja-build \
   nasm \
   yasm \
   libchromaprint-dev \
