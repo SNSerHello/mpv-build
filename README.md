@@ -172,6 +172,13 @@ incremental builds. You can do incremental builds by explicitly calling
 ``./build``. This can be faster on minor updates, but breaks sometimes, e.g.
 the FFmpeg build system can sometimes be a bit glitchy.
 
+when mpv-build is used by anaconda environment, some operations should be done as follows.
+
+```bash
+--pkg-config=/usr/bin/pkg-config # add it in ffmpeg_options
+export C_INCLUDE_PATH=/usr/include/freetype2:/usr/include/fribidi:/usr/include/harfbuzz:/usr/include/drm:/usr/include/SDL2:/usr/include/lua5.1
+```
+
 Install mpv with::
 
 ```bash
