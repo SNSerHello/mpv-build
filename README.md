@@ -181,6 +181,8 @@ conda activate py38-ffmpeg
 -Dprefix=/media/samba/anaconda3/envs/py38-ffmpeg # add it in mpv_options
 export C_INCLUDE_PATH=/usr/include/freetype2:/usr/include/fribidi:/usr/include/harfbuzz:/usr/include/drm:/usr/include/SDL2:/usr/include/lua5.1
 ./rebuild -j4
+./install
+rsync -av --progress build_libs/ $CONDA_PREFIX/ 
 ```
 
 Install mpv with::
