@@ -1,0 +1,4 @@
+-Dprefix=/media/samba/anaconda3/envs/py38-ffmpeg
+-Dsdl2=enabled
+-Dx11=enabled
+-Dlibmpv=true
