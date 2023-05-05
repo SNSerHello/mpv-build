@@ -37,6 +37,7 @@ sudo apt install \
   nasm \
   yasm \
   libchromaprint-dev \
+  libmp3lame-dev \
   libaom-dev \
   libfrei0r-ocaml-dev \
   libgnutls28-dev \
